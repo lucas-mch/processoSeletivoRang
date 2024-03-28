@@ -3,7 +3,7 @@ package dev.lucasmachado.rangprocessoseletivo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="unidades")
+@Table(name = "unidades")
 public class UnidadeSaude {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,15 +17,18 @@ public class UnidadeSaude {
 
     private Integer faixaCepFinal;
 
+    private Integer rowKey;
+
     public UnidadeSaude() {
     }
 
-    public UnidadeSaude(Long id, String cnes, String nome, Integer faixaCepInicio, Integer faixaCepFinal) {
+    public UnidadeSaude(Long id, String cnes, String nome, Integer faixaCepInicio, Integer faixaCepFinal, Integer rowKey) {
         this.id = id;
         this.cnes = cnes;
         this.nome = nome;
         this.faixaCepInicio = faixaCepInicio;
         this.faixaCepFinal = faixaCepFinal;
+        this.rowKey = rowKey;
     }
 
     public Long getId() {
@@ -66,6 +69,14 @@ public class UnidadeSaude {
 
     public void setFaixaCepFinal(Integer faixaCepFinal) {
         this.faixaCepFinal = faixaCepFinal;
+    }
+
+    public Integer getRowKey() {
+        return rowKey;
+    }
+
+    public void setRowKey(Integer rowKey) {
+        this.rowKey = rowKey;
     }
 
     @Override
