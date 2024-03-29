@@ -2,33 +2,34 @@ package dev.lucasmachado.rangprocessoseletivo.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "unidades")
-public class UnidadeSaude {
+public class UnidadeSaude implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="cnes")
     private String cnes;
 
+    @Column(name="nome")
     private String nome;
 
     private Integer faixaCepInicio;
 
     private Integer faixaCepFinal;
 
-    private Integer rowKey;
-
     public UnidadeSaude() {
     }
 
-    public UnidadeSaude(Long id, String cnes, String nome, Integer faixaCepInicio, Integer faixaCepFinal, Integer rowKey) {
+    public UnidadeSaude(Long id, String cnes, String nome, Integer faixaCepInicio, Integer faixaCepFinal) {
         this.id = id;
         this.cnes = cnes;
         this.nome = nome;
         this.faixaCepInicio = faixaCepInicio;
         this.faixaCepFinal = faixaCepFinal;
-        this.rowKey = rowKey;
     }
 
     public Long getId() {
@@ -69,14 +70,6 @@ public class UnidadeSaude {
 
     public void setFaixaCepFinal(Integer faixaCepFinal) {
         this.faixaCepFinal = faixaCepFinal;
-    }
-
-    public Integer getRowKey() {
-        return rowKey;
-    }
-
-    public void setRowKey(Integer rowKey) {
-        this.rowKey = rowKey;
     }
 
     @Override
