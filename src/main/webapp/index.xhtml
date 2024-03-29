@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:jsp="http://java.sun.com/JSP/Page">
+
+<h:head>
+    <h:outputStylesheet library="css" name="main.css"/>
+    <h:outputScript library="js" name="jquery.ba-bbq.min.js"/>
+    <h:outputScript library="js" name="main.js"/>
+    <jsp:useBean id="mainBean" class="dev.lucasmachado.rangprocessoseletivo.bean.MainBean"
+                 scope="session"/>
+</h:head>
+
+<h:body>
+
+    <pe:layout id="page" fullPage="true">
+        <!-- West -->
+        <pe:layoutPane id="west" position="west">
+            <f:facet name="header">Main Menu</f:facet>
+
+            <h:form id="form1">
+
+                <p:panelMenu id="panelMenu">
+
+                    <p:submenu label="Meat">
+                        <p:menuitem actionListener="${mainBean.updateNav('pages/cadastro.xhtml')}" update="centerpanel"
+                                    value="Cadastrar" ajax="false"/>
+                        <p:menuitem actionListener="${mainBean.updateNav('/pages/busca.xhtml')}" update="centerpanel"
+                                    value="Buscar" ajax="false"/>
+                        <p:menuitem actionListener="${mainBean.updateNav('/pages/burguer.xhtml')}" update="centerpanel"
+                                    value="Buscar" ajax="false"/>
+                    </p:submenu>
+
+                </p:panelMenu>
+
+                <p:remoteCommand name="updateNav"
+                                 actionListener="${mainBean.updateNav}"
+                                 update=":centerpanel"/>
+
+            </h:form>
+        </pe:layoutPane>
+
+        <!-- Center -->
+        <pe:layoutPane id="content" position="center">
+            <h:panelGroup id="centerpanel" layout="block">
+                <ui:include id="include" src="${mainBean.currentNav}"/>
+            </h:panelGroup>
+
+        </pe:layoutPane>
+    </pe:layout>
+
+</h:body>
+</html>
