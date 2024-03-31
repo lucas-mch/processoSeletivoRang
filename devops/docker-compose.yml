@@ -12,7 +12,7 @@ services:
       - ./database:/docker-entrypoint-initdb.d
 
   rang-wildfly:
-    build: .
+    build: ../..
     container_name: rang-wildfly
     ports:
       - "8080:8080"
