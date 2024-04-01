@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  rang-mysql:
+    image: mysql:latest
+    container_name: rang-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: senha-mysql
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+
+  rang-wildfly:
+    build: ../..
+    container_name: rang-wildfly
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    depends_on:
+      - rang-mysql
+    networks:
+      - rang-network
+
+networks:
+  rang-network:
+    driver: bridge
+
+volumes:
+  database:
+    driver: local

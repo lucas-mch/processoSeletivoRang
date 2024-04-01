@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:jsp="http://java.sun.com/JSP/Page">
+
+
+<h:body>
+    <div class="container-fluid top-menu">
+        <nav class="navbar navbar-expand-md navbar-dark pad-30">
+            <div class="container">
+                <div class="col-md-3 menu-top-device" style="display: flex;">
+                    <a class="navbar-brand top-logo" href="https://rangsaude.com.br/">
+                        <img data-src="https://rangsaude.com.br/wp-content/uploads/2021/09/logo-rang.svg"
+                             class="img-fluid lazyloaded"
+                             src="https://rangsaude.com.br/wp-content/uploads/2021/09/logo-rang.svg"/>
+                        <noscript/>
+                        <img data-src="https://rangsaude.com.br/wp-content/uploads/2021/09/logo-rang.svg"
+                             class="img-fluid lazyload"
+                             src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
+                        <noscript><img class="img-fluid"
+                                       src="https://rangsaude.com.br/wp-content/uploads/2021/09/logo-rang.svg"/>
+                        </noscript>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topmenu"
+                            aria-controls="topmenu" aria-expanded="false" aria-label="Toggle navigation">
+                    </button>
+                </div>
+                <div class="col-md-9">
+                    <div class="collapse navbar-collapse" id="topmenu">
+                        <ul class="navbar-nav justify-content-around">
+                            <li class="nav-item btn-login">
+                                <a href="${pageContext.request.contextPath}/pages/cadastro.xhtml"
+                                   class="nav-link">Cadastro de unidade</a>
+                            </li>
+                            <li class="nav-item btn-login">
+                                <a href="${pageContext.request.contextPath}/pages/busca.xhtml"
+                                   class="nav-link">Buscar unidade</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</h:body>
+</html>

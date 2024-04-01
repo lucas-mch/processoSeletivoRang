@@ -2,15 +2,19 @@ package dev.lucasmachado.rangprocessoseletivo.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name="unidades")
-public class UnidadeSaude {
+@Table(name = "unidades")
+public class UnidadeSaude implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name="cnes")
     private String cnes;
 
+    @Column(name="nome")
     private String nome;
 
     private Integer faixaCepInicio;
