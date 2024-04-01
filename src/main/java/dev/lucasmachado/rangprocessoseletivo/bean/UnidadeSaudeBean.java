@@ -21,52 +21,26 @@ public class UnidadeSaudeBean {
 
     @Inject
     private UnidadeSaudeService unidadeSaudeService;
-
     private String cep;
-
-    public void viewUnidade() {
-    }
-
-    private List<UnidadeSaude> unidades;
     private UnidadeSaude unidadeSaude = new UnidadeSaude();
-    private UnidadeSaude selectedUnidade;
     private String foundedUnidadeSaudeByCep;
-
-    public UnidadeSaude getSelectedUnidade() {
-        return selectedUnidade;
-    }
-
-    public void setSelectedUnidade(UnidadeSaude selectedUnidade) {
-        this.selectedUnidade = selectedUnidade;
-    }
-
-    public void setUnidades(List<UnidadeSaude> unidades) {
-        this.unidades = unidades;
-    }
-
     public String getCep() {
         return cep;
     }
-
     public void setCep(String cep) {
         this.cep = cep;
     }
-
     public UnidadeSaude getUnidadeSaude() {
         return unidadeSaude;
     }
-
     public void setUnidadeSaude(UnidadeSaude unidadeSaude) {
         this.unidadeSaude = unidadeSaude;
     }
-
     public String getFoundedUnidadeSaudeByCep() {
         return foundedUnidadeSaudeByCep;
     }
+    public void setFoundedUnidadeSaudeByCep(String foundedUnidadeSaudeByCep) { this.foundedUnidadeSaudeByCep = foundedUnidadeSaudeByCep; }
 
-    public void setFoundedUnidadeSaudeByCep(String foundedUnidadeSaudeByCep) {
-        this.foundedUnidadeSaudeByCep = foundedUnidadeSaudeByCep;
-    }
 
     public void salvarUnidadeSaude() {
         unidadeSaudeService.salvar(this.unidadeSaude);
