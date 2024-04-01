@@ -1,10 +1,13 @@
 package dev.lucasmachado.rangprocessoseletivo.service;
 
 
+import dev.lucasmachado.rangprocessoseletivo.bean.NotificationBean;
+import dev.lucasmachado.rangprocessoseletivo.exceptions.ConflictFaixaCepException;
 import dev.lucasmachado.rangprocessoseletivo.model.UnidadeSaude;
 import dev.lucasmachado.rangprocessoseletivo.repository.UnidadeSaudeRepository;
 import jakarta.enterprise.context.SessionScoped;
 
+import jakarta.faces.application.FacesMessage;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -12,17 +15,36 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static dev.lucasmachado.rangprocessoseletivo.utils.Converter.stringToInt;
+
 @Named
 @SessionScoped
 public class UnidadeSaudeService implements Serializable {
     @Inject
     private UnidadeSaudeRepository unidadeSaudeRepository;
 
-    public UnidadeSaude salvar(UnidadeSaude unidadeSaude) {
-        return unidadeSaudeRepository.create(unidadeSaude);
+    @Inject
+    private NotificationBean notificationBean;
+
+    public UnidadeSaude salvar(UnidadeSaude novaUnidadeSaude) {
+        if (this.hasConflictFaixaCep(novaUnidadeSaude)) {
+            String error = "Já existe uma unidade de saúde cadastrada para o mesmo intervalo de ceps.";
+            notificationBean.addMessage(FacesMessage.SEVERITY_ERROR, error, "");
+            return null;
+        }
+        return unidadeSaudeRepository.create(novaUnidadeSaude);
     }
 
     public List<UnidadeSaude> findAll() {
         return new ArrayList<UnidadeSaude>();
     }
+
+    private boolean hasConflictFaixaCep(UnidadeSaude novaUnidadeSaude) {
+        return unidadeSaudeRepository.existsConflictFaixaCep(novaUnidadeSaude);
+    }
+
+    public UnidadeSaude findByCep(String cep) {
+        return unidadeSaudeRepository.findByCEP(stringToInt(cep));
+    }
+
 }

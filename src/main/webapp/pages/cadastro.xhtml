@@ -1,80 +1,38 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:jsp="http://java.sun.com/JSP/Page">
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Rang processo seletivo</title>
-    <jsp:useBean id="unidadeSaudeBean" class="dev.lucasmachado.rangprocessoseletivo.bean.UnidadeSaudeBean"
-                 scope="request"/>
+    <title><ui:insert name="title">Processo seletivo Rang</ui:insert></title>
+    <h:outputStylesheet library="css" name="main.css"/>
+    <h:outputStylesheet library="css" name="custom.css"/>
+    <h:outputStylesheet library="css" name="bootstrap/bootstrap.css"/>
+    <h:outputScript library="js" name="bootstrap/bootstrap.js"/>
 </h:head>
-<h:body>
 
-    <div class="card">
-        <h:form id="form">
-            <p:dataTable id="unidades" var="unidade" value="${unidadeSaudeBean.unidades}" rowKey="${unidade.rowKey}"
-                         selection="#{unidadeSaudeBean.selectedUnidade}" selectionMode="single">
+<h:body style="background-image: url('https://rangsaude.com.br/wp-content/themes/rang/images/bg-texture-home.jpg')">
 
-                <p:column headerText="cnes">
-                    <h:outputText value="${unidade.cnes}"/>
-                </p:column>
-                <p:column headerText="nome">
-                    <h:outputText value="${unidade.nome}"/>
-                </p:column>
-                <p:column headerText="faixaCepInicio">
-                    <h:outputText value="${unidade.faixaCepInicio}"/>
-                </p:column>
-                <p:column headerText="faixaCepFinal">
-                    <h:outputText value="${unidade.faixaCepFinal}"/>
-                </p:column>
-            </p:dataTable>
+    <p:growl id="msgs" showDetail="true" sticky="true" life="3000"/>
 
-            <p:contextMenu for="unidades">
-                <p:menuitem value="View" update="unidadesDetail" icon="pi pi-search"
-                            oncomplete="PF('productDialog').show()" actionListener="${unidadeSaudeBean.viewUnidade}"/>
-                <p:menuitem value="Delete" update="unidades" icon="pi pi-times"
-                            action="${unidadeSaudeBean.deleteUnidade}"/>
-            </p:contextMenu>
-
-            <p:dialog header="Product Info" widgetVar="productDialog" modal="true" showEffect="fade"
-                      hideEffect="fade" resizable="false">
-                <p:outputPanel id="unidadesDetail" style="text-align:center;">
-                    <p:column rendered="${not empty unidadeSaudeBean.selectedUnidade}">
-                        <div class="product">
-                            <div class="product-grid-item border-0" style="margin-bottom: 0">
-                                <div class="product-grid-item-top">
-                                    <div>
-                                        <i class="pi pi-tag product-category-icon"/>
-                                        <span class="product-category">${unidadeSaudeBean.selectedUnidade.cnes}</span>
-                                    </div>
-                                    <span class="product-badge status-${unidadeSaudeBean.selectedUnidade.nome}">${unidadeSaudeBean.selectedUnidade.nome}</span>
-                                </div>
-                                <div class="product-grid-item-content">
-                                    <p:graphicImage
-                                            name="demo/images/product/${unidadeSaudeBean.selectedUnidade.nome}"/>
-                                    <div class="product-name">${unidadeSaudeBean.selectedUnidade.nome}</div>
-                                    <div class="product-description">${unidadeSaudeBean.selectedUnidade.nome}</div>
-                                    <p:rating readonly="true" value="${unidadeSaudeBean.selectedUnidade.nome}"/>
-                                </div>
-                                <div class="product-grid-item-bottom">
-                                    <h:outputText value="${unidadeSaudeBean.selectedUnidade.nome}"
-                                                  styleClass="product-price">
-                                        <f:convertNumber currencySymbol="$" type="currency"/>
-                                    </h:outputText>
-                                    <p:commandButton type="button" value="Add To Cart"
-                                                     icon="pi pi-shopping-cart">
-                                    </p:commandButton>
-                                </div>
-                            </div>
-                        </div>
-                    </p:column>
-                </p:outputPanel>
-            </p:dialog>
-
-
-        </h:form>
+    <div class="header">
+        <h:panelGroup id="appHeader">
+            <ui:include src="/layout/header.xhtml"/>
+        </h:panelGroup>
     </div>
 
+    <div class="appContent">
+        <ui:include src="/components/formCadastroUnidadeSaude.xhtml"/>
+    </div>
+
+    <footer id="footer" class="bg-texture-color">
+        <h:panelGroup id="appFooter">
+            <ui:include src="/layout/footer.xhtml"/>
+        </h:panelGroup>
+    </footer>
 </h:body>
+
 </html>
+
