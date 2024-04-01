@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <jsp:useBean id="unidadeSaudeBean" class="dev.lucasmachado.rangprocessoseletivo.bean.UnidadeSaudeBean"
+                 scope="request"/>
+</h:head>
+<h:body>
+    <div class="formContainer lora-500">
+        <h:form id="unidadeSaudeForm">
+            <h1>Formulário de Unidade de Saúde</h1>
+
+            <h:outputLabel for="cnes" value="CNES"/><br/>
+            <h:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" id="cnes" value="${unidadeSaudeBean.unidadeSaude.cnes}"
+                         required="true" requiredMessage="Por favor, informar o CNES"/><br/>
+
+            <h:outputLabel for="nome" value="Nome"/><br/>
+            <h:inputText id="nome" value="${unidadeSaudeBean.unidadeSaude.nome}"
+                         required="true" requiredMessage="Por favor, informar o nome da unidade."/><br/>
+
+            <h:outputLabel for="faixaCepInicio" value="Faixa CEP Início"/><br/>
+            <h:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" id="faixaCepInicio" value="${unidadeSaudeBean.unidadeSaude.faixaCepInicio}"
+                         required="true" requiredMessage="Por favor, informar o inicio da faixa de cep."/><br/>
+
+            <h:outputLabel for="faixaCepFinal" value="Faixa CEP Final"/><br/>
+            <h:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" id="faixaCepFinal" value="${unidadeSaudeBean.unidadeSaude.faixaCepFinal}"
+                         required="true" requiredMessage="Por favor, informar o final da faixa de cep."/><br/>
+
+            <div class="formActions">
+                <h:commandButton value="Salvar" action="${unidadeSaudeBean.salvarUnidadeSaude}" styleClass="btn btn-primary btn-lg"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

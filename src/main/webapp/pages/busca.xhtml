@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title><ui:insert name="title">Processo seletivo Rang</ui:insert></title>
+    <h:outputStylesheet library="css" name="main.css"/>
+    <h:outputStylesheet library="css" name="custom.css"/>
+    <h:outputStylesheet library="css" name="bootstrap/bootstrap.css"/>
+    <h:outputScript library="js" name="bootstrap/bootstrap.js"/>
+</h:head>
+
+<h:body style="background-image: url('https://rangsaude.com.br/wp-content/themes/rang/images/bg-texture-home.jpg')">
+
+    <p:growl id="msgs" showDetail="true" sticky="true" life="3000"/>
+
+    <div class="header">
+        <h:panelGroup id="appHeader">
+            <ui:include src="/layout/header.xhtml"/>
+        </h:panelGroup>
+    </div>
+
+    <div class="appContent">
+        <ui:include src="/components/formBuscaUnidadeSaude.xhtml"/>
+    </div>
+
+    <footer id="footer" class="bg-texture-color">
+        <h:panelGroup id="appFooter">
+            <ui:include src="/layout/footer.xhtml"/>
+        </h:panelGroup>
+    </footer>
+</h:body>
+
+</html>
+

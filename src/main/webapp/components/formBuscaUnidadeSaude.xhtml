@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <jsp:useBean id="unidadeSaudeBean" class="dev.lucasmachado.rangprocessoseletivo.bean.UnidadeSaudeBean"
+                 scope="request"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="cep">Informe o cep da unidade de saude</h:outputLabel>
+            <h:inputText id="cep" value="#{unidadeSaudeBean.cep}"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Buscar" action="#{unidadeSaudeBean.findByCep}"/>
+    </h:form>
+
+    <!-- Exibir resultado da busca -->
+    <h:panelGroup rendered="${not empty unidadeSaudeBean.foundedUnidadeSaudeByCep}">
+        <h2>Resultado da Busca</h2>
+        <p>${unidadeSaudeBean.foundedUnidadeSaudeByCep}</p>
+    </h:panelGroup>
+
+    <!-- Exibir mensagem de nenhum resultado encontrado -->
+    <h:panelGroup rendered="#{empty unidadeSaudeBean.foundedUnidadeSaudeByCep}">
+        <p>Nenhum resultado encontrado.</p>
+    </h:panelGroup>
+</h:body>
+</html>
