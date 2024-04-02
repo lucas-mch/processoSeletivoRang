@@ -2,6 +2,8 @@ package dev.lucasmachado.rangprocessoseletivo.repository;
 
 import dev.lucasmachado.rangprocessoseletivo.model.UnidadeSaude;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
@@ -16,8 +18,7 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 @Stateless
-@Named
-@SessionScoped
+@Dependent
 public class UnidadeSaudeRepository implements Serializable {
 
     private static final Logger logger = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
