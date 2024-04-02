@@ -1,4 +1,4 @@
-# Projeto de Localização de Unidade de Saúde por CEP
+# Projeto de Localização de Unidade de Saúde por CEP.
 
 Este é um projeto desenvolvido como parte de um processo seletivo para a Rang Tecnologia. O objetivo do projeto é criar uma aplicação web em Java utilizando JSF, PrimeFaces, JPA/Hibernate e MySQL, que permita aos pacientes informarem seu CEP e receberem sugestões sobre qual unidade de saúde atende à sua área.
 
