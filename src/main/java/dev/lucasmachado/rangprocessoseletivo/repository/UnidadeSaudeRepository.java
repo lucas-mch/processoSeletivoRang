@@ -6,6 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -24,6 +25,7 @@ public class UnidadeSaudeRepository implements Serializable {
     private static final Logger logger = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     @PersistenceContext
+    @Inject
     private EntityManager entityManager;
 
     @Transactional
