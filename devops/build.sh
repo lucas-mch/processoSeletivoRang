@@ -1,0 +1,1 @@
+docker build -t lcsmachaado/rang-processo-seletivo:latest .

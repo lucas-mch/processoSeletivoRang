@@ -1,28 +1,31 @@
 package dev.lucasmachado.rangprocessoseletivo.repository;
 
 import dev.lucasmachado.rangprocessoseletivo.model.UnidadeSaude;
+import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
 
-import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.lang.invoke.MethodHandles;
 import java.util.Objects;
 import java.util.logging.Logger;
 
 @Stateless
-@Named
-@SessionScoped
+@LocalBean
 public class UnidadeSaudeRepository implements Serializable {
 
     private static final Logger logger = Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 
-    @PersistenceContext
+    @PersistenceContext(name="rangPersistance")
     private EntityManager entityManager;
 
     @Transactional

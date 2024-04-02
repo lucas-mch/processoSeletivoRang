@@ -27,11 +27,11 @@ public class UnidadeSaudeService implements Serializable {
     private NotificationBean notificationBean;
 
     public UnidadeSaude salvar(UnidadeSaude novaUnidadeSaude) {
-        if (this.hasConflictFaixaCep(novaUnidadeSaude)) {
-            String error = "Já existe uma unidade de saúde cadastrada para o mesmo intervalo de ceps.";
-            notificationBean.addMessage(FacesMessage.SEVERITY_ERROR, error, "");
-            return null;
-        }
+//        if (this.hasConflictFaixaCep(novaUnidadeSaude)) {
+//            String error = "Já existe uma unidade de saúde cadastrada para o mesmo intervalo de ceps.";
+//            notificationBean.addMessage(FacesMessage.SEVERITY_ERROR, error, "");
+//            return null;
+//        }
         return unidadeSaudeRepository.create(novaUnidadeSaude);
     }
 
