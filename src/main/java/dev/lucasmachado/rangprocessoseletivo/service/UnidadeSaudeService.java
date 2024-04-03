@@ -14,6 +14,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static dev.lucasmachado.rangprocessoseletivo.utils.Converter.stringToInt;
 
@@ -27,12 +28,17 @@ public class UnidadeSaudeService implements Serializable {
     private NotificationBean notificationBean;
 
     public UnidadeSaude salvar(UnidadeSaude novaUnidadeSaude) {
-//        if (this.hasConflictFaixaCep(novaUnidadeSaude)) {
-//            String error = "Já existe uma unidade de saúde cadastrada para o mesmo intervalo de ceps.";
-//            notificationBean.addMessage(FacesMessage.SEVERITY_ERROR, error, "");
-//            return null;
-//        }
-        return unidadeSaudeRepository.create(novaUnidadeSaude);
+        if (this.hasConflictFaixaCep(novaUnidadeSaude)) {
+            String error = "Já existe uma unidade de saúde cadastrada para o mesmo intervalo de ceps.";
+            notificationBean.addMessage(FacesMessage.SEVERITY_ERROR, error, "");
+            return null;
+        }
+        UnidadeSaude newUnidade = unidadeSaudeRepository.create(novaUnidadeSaude);
+        if (Objects.nonNull(newUnidade)) {
+            String sucess = "Unidade de saúde cadastrada com sucesso!";
+            notificationBean.addMessage(FacesMessage.SEVERITY_INFO, sucess, "");
+        }
+        return newUnidade;
     }
 
     public List<UnidadeSaude> findAll() {
@@ -44,6 +50,11 @@ public class UnidadeSaudeService implements Serializable {
     }
 
     public UnidadeSaude findByCep(String cep) {
+        UnidadeSaude foundedUnidadeSaude = unidadeSaudeRepository.findByCEP(stringToInt(cep));
+        if (Objects.isNull(foundedUnidadeSaude)) {
+            String notFounded = "Nenhuma unidade de saúde encontrada nessa faixa de CEP";
+            notificationBean.addMessage(FacesMessage.SEVERITY_WARN, notFounded, "");
+        }
         return unidadeSaudeRepository.findByCEP(stringToInt(cep));
     }
 
