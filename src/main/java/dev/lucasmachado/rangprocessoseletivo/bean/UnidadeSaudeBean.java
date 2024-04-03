@@ -23,7 +23,7 @@ public class UnidadeSaudeBean {
     private UnidadeSaudeService unidadeSaudeService;
     private String cep;
     private UnidadeSaude unidadeSaude = new UnidadeSaude();
-    private String foundedUnidadeSaudeByCep;
+    private UnidadeSaude foundedUnidadeSaudeByCep;
     private boolean isSearched = false;
 
     public String getCep() {
@@ -42,11 +42,11 @@ public class UnidadeSaudeBean {
         this.unidadeSaude = unidadeSaude;
     }
 
-    public String getFoundedUnidadeSaudeByCep() {
+    public UnidadeSaude getFoundedUnidadeSaudeByCep() {
         return foundedUnidadeSaudeByCep;
     }
 
-    public void setFoundedUnidadeSaudeByCep(String foundedUnidadeSaudeByCep) {
+    public void setFoundedUnidadeSaudeByCep(UnidadeSaude foundedUnidadeSaudeByCep) {
         this.foundedUnidadeSaudeByCep = foundedUnidadeSaudeByCep;
     }
 
@@ -71,8 +71,7 @@ public class UnidadeSaudeBean {
     }
 
     public void findByCep() {
-        UnidadeSaude foundedByCep = unidadeSaudeService.findByCep(this.cep);
-        foundedUnidadeSaudeByCep = Objects.nonNull(foundedByCep) ? foundedByCep.toString() : null;
+        foundedUnidadeSaudeByCep = unidadeSaudeService.findByCep(this.cep);
         this.isSearched = true;
     }
 

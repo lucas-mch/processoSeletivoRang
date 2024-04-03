@@ -12,18 +12,31 @@
 <h:body>
     <div class="formContainer lora-500">
         <h:form>
-            <h:outputLabel for="cep">Informe o cep da unidade de saude</h:outputLabel><br/>
-            <h:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" id="cep" value="#{unidadeSaudeBean.cep}"/><br/>
-            <h:commandButton value="Buscar" action="#{unidadeSaudeBean.findByCep}"/>
+            <h1>Informe o cep da unidade de saude</h1><br/>
+            <h:inputText onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" id="cep"
+                         value="#{unidadeSaudeBean.cep}"/><br/>
+            <div class="formActions">
+                <h:commandButton value="Buscar" action="#{unidadeSaudeBean.findByCep}"/>
+            </div>
         </h:form>
-
-        <h:panelGroup rendered="${not empty unidadeSaudeBean.foundedUnidadeSaudeByCep}">
+        <!-- rendered="${not empty unidadeSaudeBean.foundedUnidadeSaudeByCep}" -->
+        <h:panelGroup>
             <h2>Resultado da Busca</h2>
-            <p>${unidadeSaudeBean.foundedUnidadeSaudeByCep}</p>
-        </h:panelGroup>
-
-        <h:panelGroup rendered="#{empty unidadeSaudeBean.foundedUnidadeSaudeByCep and unidadeSaudeBean.isSearched}">
-            <p>Nenhum resultado encontrado.</p>
+            <p:dataTable id="products" var="unidade" value="#{unidadeSaudeBean.foundedUnidadeSaudeByCep}"
+                         rowKey="#{unidade.id}">
+                <p:column headerText="CNES">
+                    <h:outputText value="#{unidade.cnes}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{unidade.nome}"/>
+                </p:column>
+                <p:column headerText="Faixa inicial do CEP">
+                    <h:outputText value="#{unidade.faixaCepInicio}"/>
+                </p:column>
+                <p:column headerText="Faixa Final do CEP">
+                    <h:outputText value="#{unidade.faixaCepFinal}"/>
+                </p:column>
+            </p:dataTable>
         </h:panelGroup>
     </div>
 </h:body>

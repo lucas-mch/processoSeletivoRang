@@ -34,7 +34,7 @@ public class UnidadeSaudeService implements Serializable {
             return null;
         }
         UnidadeSaude newUnidade = unidadeSaudeRepository.create(novaUnidadeSaude);
-        if(Objects.nonNull(newUnidade)) {
+        if (Objects.nonNull(newUnidade)) {
             String sucess = "Unidade de saúde cadastrada com sucesso!";
             notificationBean.addMessage(FacesMessage.SEVERITY_INFO, sucess, "");
         }
@@ -50,6 +50,11 @@ public class UnidadeSaudeService implements Serializable {
     }
 
     public UnidadeSaude findByCep(String cep) {
+        UnidadeSaude foundedUnidadeSaude = unidadeSaudeRepository.findByCEP(stringToInt(cep));
+        if (Objects.isNull(foundedUnidadeSaude)) {
+            String notFounded = "Nenhuma unidade de saúde encontrada nessa faixa de CEP";
+            notificationBean.addMessage(FacesMessage.SEVERITY_WARN, notFounded, "");
+        }
         return unidadeSaudeRepository.findByCEP(stringToInt(cep));
     }
 
