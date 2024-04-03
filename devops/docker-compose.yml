@@ -17,7 +17,6 @@ services:
       interval: 30s
       timeout: 30s
       retries: 3
-
   rang-wildfly:
     image: lcsmachaado/rang-processo-seletivo:latest
     container_name: rang-wildfly
@@ -26,15 +25,12 @@ services:
       - "9990:9990"
       - "8787:8787"
     depends_on:
-      rang-compose-mysql:
-        condition: service_healthy
+      - rang-compose-mysql
     networks:
       - rang-network
-
 networks:
   rang-network:
     driver: bridge
-
 volumes:
   database:
     driver: local
